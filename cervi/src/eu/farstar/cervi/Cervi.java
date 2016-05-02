@@ -85,6 +85,7 @@ public class Cervi implements MessageQueueInterface {
 		
 	    switch (myGameState) {
 	    case STARTGAME:
+	    	myMenu.clearMenu();
 	    	buildGame();
 	    	myGameState = gameState.PLAY;
 	    	break;

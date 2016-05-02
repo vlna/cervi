@@ -38,21 +38,23 @@ public class Player {
 		double a =  0;
 		double r = 40;
 		
+		float speed = 3; 
+		
 		if (turnLeft ^ turnRight){
 			r=Math.sqrt(dx*dx+dy*dy);
 			if (turnRight) {
-				a=Math.atan2(dy, dx)-(delta*Math.PI/2000); // 45 degrees/sec
+				a=Math.atan2(dy, dx)-((3+speed)*delta*Math.PI/6000); // 45 degrees/sec
 			}
 			if (turnLeft) {
-				a=Math.atan2(dy, dx)+(delta*Math.PI/2000); // 45 degrees/sec
+				a=Math.atan2(dy, dx)+((3+speed)*delta*Math.PI/6000); // 45 degrees/sec
 			}
 			
 			dx = (float)(Math.cos(a) * r);
 			dy = (float)(Math.sin(a) * r);
 		}
 		
-		lastx += ((turnLeft && turnRight)?2:1)*(delta * dx) / 1000;
-		lasty += ((turnLeft && turnRight)?2:1)*(delta * dy) / 1000;
+		lastx += (3+speed)*((turnLeft && turnRight)?2:1)*(delta * dx) / 3000;
+		lasty += (3+speed)*((turnLeft && turnRight)?2:1)*(delta * dy) / 3000;
 		
 		float distx = lastx-(worm.get(worm.size()-1)).x;
 		float disty = lasty-(worm.get(worm.size()-1)).y;
